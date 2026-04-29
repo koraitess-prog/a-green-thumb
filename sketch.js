@@ -137,14 +137,19 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   createPaperTexture();
   plant = new PlantSystem();
+  function getButtonY() {
+  if (width < 768) {
+    return height * 0.56; // פלאפון - גבוה יותר
+  }
+  return height / 1.5;    // מחשב - כמו עכשיו
+}
 }
 
 // ─── Button ───────────────────────────────────────────────────────────────────
 
 function drawCenterButton() {
   const cx = width / 2;
-  const cy = height / 1.5;
-  const r = CONFIG.buttonRadius;
+const cy = width < 768 ? height * 0.56 : height / 1.5;  const r = CONFIG.buttonRadius;
   const ctx = drawingContext;
   const pressed = holding;
   const hovered = !pressed && pointerInsideButton(mouseX, mouseY);
